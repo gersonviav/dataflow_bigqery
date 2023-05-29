@@ -11,7 +11,8 @@ echo "## Create venv."
 
 # Install apache-beam
 echo "## Install apache-beam[gcp]."
-sudo apt install unixodbc-dev 
+
+sudo ACCEPT_EULA=Y apt-get install -y  msodbcsql17
 sudo apt-get update
 
 pip install --upgrade pip
@@ -35,8 +36,9 @@ python -m conetsql --runner=DataflowRunner \
   --db_password OoPho0xuOophu6xe \
   --requirements_file requirements.txt \
   --setup_file=./setup.py \
-  --output_table  raw.LMS_ACTVIDAD \
+  --output_table  raw \
   --sdk_container  gokuni/dataflow:tag \
   --service_account 394717392014-compute@developer.gserviceaccount.com \
   --subnetwork=https://www.googleapis.com/compute/v1/projects/pe-ferreyros-sharedvpc-dev-01/regions/us-east4/subnetworks/snetuse4dev01  \
-  --network pe-ferreyros-sharedvpc-dev-01
+  --network pe-ferreyros-sharedvpc-dev-01  \
+  --template_location gs://pe-fe-rw-dv/test/templates 
